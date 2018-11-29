@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -e -o pipefail
+
+NEUTRONCLIENT_VERSION="6.11.0"
+
+exec docker run \
+    --rm \
+    -it \
+    -v "${HOME}:${HOME}" \
+    -w "${PWD}" \
+    -e OS_AUTH_URL \
+    -e OS_IDENTITY_API_VERSION \
+    -e OS_PROJECT_ID \
+    -e OS_PROJECT_NAME \
+    -e OS_TENANT_ID \
+    -e OS_TENANT_NAME \
+    -e OS_PROJECT_DOMAIN_NAME \
+    -e OS_USERNAME \
+    -e OS_USER_DOMAIN_NAME \
+    -e OS_PASSWORD \
+    -e OS_REGION_NAME \
+    -e OS_INTERFACE \
+    -e OS_CACERT \
+    "superbrothers/neutronclient:${NEUTRONCLIENT_VERSION}" \
+    "$@"
